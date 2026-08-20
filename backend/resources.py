@@ -265,9 +265,13 @@ REGISTRY = {
     "scripts": dict(
         table="scripts",
         order="name",
-        fields=["tenant_id", "name", "type", "published"],
+        fields=["tenant_id", "name", "type", "published", "content"],
         search=["name"],
         perm=None,
+        # content is JSONB storing an *object* (page/component/property
+        # state) at its top level, so — unlike groups/evaluators below —
+        # it doesn't need json_fields: psycopg2 already auto-adapts a
+        # bare Python dict to jsonb (see db.py), same as queues.config.
     ),
     "phone-base-settings": dict(
         table="phone_base_settings",

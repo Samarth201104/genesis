@@ -499,9 +499,9 @@ CREATE TABLE IF NOT EXISTS schedule_groups (
 );
 
 -- Admin > Contact Center > Scripts (the list Script Editor opens into).
--- Only name/type/published persist — the visual drag-drop canvas itself
--- (scriptView(), window.SCR) is a deep in-place editor, same known gap
--- as Architect's flow-node editing.
+-- content holds the deep in-place editor's own state (pages, components,
+-- component properties, variables) as one JSONB blob committed on Save —
+-- same pattern as queues.config / flows.graph, see the ALTER below.
 CREATE TABLE IF NOT EXISTS scripts (
   id SERIAL PRIMARY KEY,
   tenant_id UUID NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -509,6 +509,7 @@ CREATE TABLE IF NOT EXISTS scripts (
   type TEXT,
   published BOOLEAN NOT NULL DEFAULT false
 );
+ALTER TABLE scripts ADD COLUMN IF NOT EXISTS content JSONB NOT NULL DEFAULT '{}'::jsonb;
 
 -- Now that flows/queues exist, wire the interactions.flow_id FK too.
 DO $$
