@@ -73,7 +73,7 @@ export const DIRECTORY_SCRIPT: string = `
        GET/POST      \\/api/directory/threads/:id/messages
        POST          \\/api/directory/calls · \\/emails
      ══════════════════════════════════════════════════════════ */
-  var API_BASE = window.MCM_DIRECTORY_API || 'https://genesis-wvjj.onrender.com/api/directory';
+  var API_BASE = window.MCM_DIRECTORY_API || '${import.meta.env.VITE_API_BASE || "https://genesis-wvjj.onrender.com"}/api/directory';
   var USE_API = true;   // API is live — data stored in PostgreSQL
   var KEY = 'mcm_directory_v5';
 

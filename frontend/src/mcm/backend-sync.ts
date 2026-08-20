@@ -8,7 +8,7 @@ export const BACKEND_SYNC_SCRIPT: string = `
 (function() {
   'use strict';
 
-  var SUBS_API_BASE = window.SUBS_API_BASE || 'https://genesis-wvjj.onrender.com';
+  var SUBS_API_BASE = window.SUBS_API_BASE || '${import.meta.env.VITE_API_BASE || "https://genesis-wvjj.onrender.com"}';
   var DB = window.DB;
   if (!DB) return;
 

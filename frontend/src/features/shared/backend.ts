@@ -1,7 +1,7 @@
 // Shared backend config for every feature page's service layer.
 // One demo tenant for now, matching how the rest of the app (Subscription's
 // SubsAPI, the legacy scripts.ts DB.*) has no real multi-tenant login either.
-export const API_BASE = "https://genesis-wvjj.onrender.com";
+export const API_BASE = import.meta.env.VITE_API_BASE || "https://genesis-wvjj.onrender.com";
 export const TENANT_ID = "38bfdb29-8845-46e0-ab92-b0b5b43cfd6e";
 
 declare global {
